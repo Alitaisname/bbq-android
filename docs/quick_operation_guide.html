@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>易点点关键操作速查</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        --ink: #12313a;
+        --muted: #5e6f78;
+        --line: #b9e8ef;
+        --panel: #f6fdfe;
+        --panel-strong: #e7fbff;
+        --brand: #0097a9;
+        --brand-dark: #006d7b;
+        --warn: #b65320;
+        --paper: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #eaf8fb;
+        color: var(--ink);
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(234, 248, 251, 0.92);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(8px);
+      }
+
+      .toolbar button,
+      .toolbar a {
+        border: 1px solid var(--brand);
+        border-radius: 6px;
+        background: var(--paper);
+        color: var(--brand-dark);
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 8px 14px;
+        text-decoration: none;
+      }
+
+      .sheet {
+        width: min(1180px, calc(100vw - 28px));
+        margin: 18px auto 28px;
+        padding: 24px;
+        background: var(--paper);
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        box-shadow: 0 16px 45px rgba(0, 87, 104, 0.12);
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: center;
+        padding: 18px 20px;
+        background: linear-gradient(135deg, #e5fbff 0%, #f9ffff 62%, #d9f7fc 100%);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--brand-dark);
+        font-size: 34px;
+        line-height: 1.15;
+      }
+
+      .rule {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+        padding: 13px 16px;
+        border-radius: 8px;
+        background: var(--brand);
+        color: white;
+        font-size: 20px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      .card {
+        min-height: 232px;
+        overflow: hidden;
+        background: var(--panel);
+        border: 1.5px solid var(--line);
+        border-radius: 10px;
+      }
+
+      .card h2 {
+        margin: 0;
+        padding: 12px 14px;
+        background: var(--brand);
+        color: white;
+        font-size: 21px;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .card-body {
+        display: grid;
+        gap: 10px;
+        padding: 13px;
+      }
+
+      .item {
+        display: grid;
+        gap: 5px;
+      }
+
+      .label {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.2;
+      }
+
+      .cmd {
+        display: block;
+        width: 100%;
+        padding: 9px 10px;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        color: var(--ink);
+        font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.35;
+        white-space: normal;
+      }
+
+      .wide-row {
+        display: grid;
+        grid-template-columns: 1.12fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .note {
+        min-height: 174px;
+        padding: 15px 16px;
+        background: #fffaf0;
+        border: 1.5px solid #f1d09d;
+        border-radius: 10px;
+      }
+
+      .note h2 {
+        margin: 0 0 10px;
+        color: var(--warn);
+        font-size: 21px;
+        line-height: 1.2;
+      }
+
+      .note ul {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .note li {
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      footer {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: var(--panel-strong);
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .wide-row {
+          grid-template-columns: 1fr;
+        }
+
+        header {
+          grid-template-columns: 1fr;
+        }
+
+        .badge {
+          justify-self: start;
+        }
+      }
+
+      @media print {
+        @page {
+          size: A4 landscape;
+          margin: 8mm;
+        }
+
+        body {
+          background: white;
+        }
+
+        .toolbar {
+          display: none;
+        }
+
+        .sheet {
+          width: auto;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        header {
+          padding: 11mm 9mm;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        .rule {
+          font-size: 15px;
+        }
+
+        .badge {
+          min-width: 34mm;
+          font-size: 16px;
+          padding: 9px 12px;
+        }
+
+        .grid {
+          gap: 3.5mm;
+          margin-top: 4mm;
+        }
+
+        .card {
+          min-height: 54mm;
+          break-inside: avoid;
+        }
+
+        .card h2 {
+          padding: 7px 9px;
+          font-size: 17px;
+        }
+
+        .card-body {
+          gap: 6px;
+          padding: 8px;
+        }
+
+        .label {
+          font-size: 11px;
+        }
+
+        .cmd {
+          padding: 6px 7px;
+          font-size: 14px;
+        }
+
+        .wide-row {
+          gap: 3.5mm;
+          margin-top: 4mm;
+        }
+
+        .note {
+          min-height: 38mm;
+          padding: 9px 10px;
+          break-inside: avoid;
+        }
+
+        .note h2 {
+          font-size: 17px;
+          margin-bottom: 6px;
+        }
+
+        .note ul {
+          gap: 4px;
+        }
+
+        .note li {
+          font-size: 13px;
+        }
+
+        footer {
+          margin-top: 4mm;
+          padding: 7px 10px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button type="button" onclick="window.print()">打印 / 另存为 PDF</button>
+      <a href="#guide">查看速查表</a>
+    </div>
+
+    <main id="guide" class="sheet" aria-label="易点点关键操作速查">
+      <header>
+        <div>
+          <h1>易点点关键操作速查</h1>
+          <p class="rule">标准说法：桌号 + 动作 + 菜名 + 数量 + 备注。先选桌再说，识别更稳。</p>
+        </div>
+        <strong class="badge">门店培训版</strong>
+      </header>
+
+      <section class="grid" aria-label="标准语音指令">
+        <article class="card">
+          <h2>开桌</h2>
+          <div class="card-body">
+            <div class="item">
+              <span class="label">自动开新桌</span>
+              <code class="cmd">开桌</code>
+            </div>
+            <div class="item">
+              <span class="label">指定桌开桌</span>
+              <code class="cmd">A3开桌</code>
+            </div>
+            <div class="item">
+              <span class="label">开桌并点菜</span>
+              <code class="cmd">开桌，加2串羊肉串，少辣</code>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>点菜 / 加菜</h2>
+          <div class="card-body">
+            <div class="item">
+              <span class="label">单桌加菜</span>
+              <code class="cmd">3号桌加2串羊肉串</code>
+            </div>
+            <div class="item">
+              <span class="label">带备注点菜</span>
+              <code class="cmd">A3加土豆片2份，少辣</code>
+            </div>
+            <div class="item">
+              <span class="label">多桌同加</span>
+              <code class="cmd">2号桌和6号桌都加10串羊肉串</code>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>外卖 / 打包</h2>
+          <div class="card-body">
+            <div class="item">
+              <span class="label">外卖单</span>
+              <code class="cmd">外卖10份可乐鸡翅</code>
+            </div>
+            <div class="item">
+              <span class="label">打包单</span>
+              <code class="cmd">打包2份臭豆腐</code>
+            </div>
+            <div class="item">
+              <span class="label">外卖字母</span>
+              <code class="cmd">设置 -> 外卖单设置 -> W</code>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>买单 / 撤桌</h2>
+          <div class="card-body">
+            <div class="item">
+              <span class="label">买单</span>
+              <code class="cmd">3号桌买单</code>
+            </div>
+            <div class="item">
+              <span class="label">撤桌</span>
+              <code class="cmd">3号桌撤桌</code>
+            </div>
+            <div class="item">
+              <span class="label">多桌撤桌</span>
+              <code class="cmd">8号桌和9号桌撤桌</code>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="wide-row" aria-label="补充操作">
+        <article class="note">
+          <h2>退菜 / 删除 / 备注</h2>
+          <ul>
+            <li>退菜：3号桌退1串羊肉串</li>
+            <li>备注：A3备注改成不要葱</li>
+            <li>删备注：删除A3的备注</li>
+            <li>屏幕删除：选桌后长按“待上菜”</li>
+          </ul>
+        </article>
+
+        <article class="note">
+          <h2>语音按键方式</h2>
+          <ul>
+            <li>按一次开始，再按一次结束。</li>
+            <li>按住说话，松开后提交。</li>
+            <li>音量下键：开始或提交语音。</li>
+            <li>音量上键：取消本次语音。</li>
+          </ul>
+        </article>
+
+        <article class="note">
+          <h2>屏幕按钮</h2>
+          <ul>
+            <li>主页面：选桌、上菜、打印、买单。</li>
+            <li>菜品录入：拍照上传菜单。</li>
+            <li>数据查看：历史订单、补打小票。</li>
+            <li>买单前先核对金额。</li>
+          </ul>
+        </article>
+      </section>
+
+      <footer>建议打印成 A4 横版，贴在收银台旁。复杂情况先点左侧桌号，再说指令。</footer>
+    </main>
+  </body>
+</html>

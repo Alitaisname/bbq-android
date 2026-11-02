@@ -1,0 +1,40 @@
+﻿# General
+.gradle/
+.idea/
+local.properties
+*.iml
+
+# Android
+**/build/
+captures/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local credentials, runtime data, and generated artifacts
+.gradle-home*/
+**/.gradle-home*/
+**/__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pem
+*.db
+*.db-shm
+*.db-wal
+*.sqlite*
+**/account_scopes/
+**/audio_uploads/
+/tmp_*
+/.playwright-mcp/
+/app_screen_capture.*
+/sales_*.png
+/sales_*.xml

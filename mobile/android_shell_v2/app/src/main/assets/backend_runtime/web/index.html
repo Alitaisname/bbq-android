@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>易点点</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Ma+Shan+Zheng&family=Manrope:wght@500;700;800&family=Playfair+Display+SC:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Public+Sans:wght@400;500;700&family=ZCOOL+KuaiLe&display=swap"
+      rel="stylesheet"
+    />
+    <link id="base-skin" rel="stylesheet" href="./styles.css?v=20260427-33" />
+    <link id="preview-full-skin" rel="stylesheet" href="./preview_nonauth.css?v=20260427-33" media="not all" disabled />
+    <link id="runtime-compat-skin" rel="stylesheet" href="./runtime_compat.css?v=20260427-33" media="not all" disabled />
+  </head>
+  <body class="view-auth-active">
+    <div class="app-shell">
+      <header class="top-nav">
+        <div class="brand-nav">
+          <h1 class="brand">易点点</h1>
+          <nav class="top-links" aria-label="Primary">
+            <button id="nav-main" class="nav-tab active">主页面</button>
+            <button id="nav-menu" class="nav-tab">菜品录入</button>
+            <button id="nav-sales" class="nav-tab">数据查看</button>
+          </nav>
+        </div>
+        <div class="top-icons">
+          <button id="top-notice-btn" class="top-icon-btn" type="button" aria-label="通知">
+            <svg xmlns="http://www.w3.org/2000/svg" class="top-icon-lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M10.268 21a2 2 0 0 0 3.464 0"></path>
+              <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.674C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path>
+            </svg>
+          </button>
+          <button id="top-settings-btn" class="top-icon-btn" type="button" aria-label="桌号设置">
+            <svg xmlns="http://www.w3.org/2000/svg" class="top-icon-lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M12.22 2h-.44a2 2 0 0 0-1.94 1.52l-.2.78a2 2 0 0 1-2.6 1.4l-.75-.27a2 2 0 0 0-2.37.83l-.22.38a2 2 0 0 0 .43 2.47l.59.59a2 2 0 0 1 0 2.83l-.59.59a2 2 0 0 0-.43 2.47l.22.38a2 2 0 0 0 2.37.83l.75-.27a2 2 0 0 1 2.6 1.4l.2.78a2 2 0 0 0 1.94 1.52h.44a2 2 0 0 0 1.94-1.52l.2-.78a2 2 0 0 1 2.6-1.4l.75.27a2 2 0 0 0 2.37-.83l.22-.38a2 2 0 0 0-.43-2.47l-.59-.59a2 2 0 0 1 0-2.83l.59-.59a2 2 0 0 0 .43-2.47l-.22-.38a2 2 0 0 0-2.37-.83l-.75.27a2 2 0 0 1-2.6-1.4l-.2-.78A2 2 0 0 0 12.22 2z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+          <button id="top-profile-btn" class="top-icon-btn" type="button" aria-label="个人页">
+            <svg xmlns="http://www.w3.org/2000/svg" class="top-icon-lucide" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+        </div>
+        <section id="top-notice-panel" class="top-notice-panel" aria-label="通知中心" hidden>
+          <header class="top-notice-head">
+            <strong>通知中心</strong>
+            <div class="top-notice-actions">
+              <button id="top-notice-clear" type="button" class="top-notice-close">清空</button>
+              <button id="top-notice-close" type="button" class="top-notice-close">收起</button>
+            </div>
+          </header>
+          <ul class="top-notice-list">
+            <li><button type="button" class="top-notice-item">今日营业额统计已更新</button></li>
+            <li><button type="button" class="top-notice-item">语音任务队列运行正常</button></li>
+            <li><button type="button" class="top-notice-item">点击消息可扩展详情（预留）</button></li>
+          </ul>
+        </section>
+      </header>
+
+      <section class="pages-zone">
+        <section id="view-auth" class="view active page-view">
+          <main class="auth-shell">
+            <header class="auth-shell-brand" aria-label="登录页品牌">
+              <h1 class="auth-shell-logo">易点点</h1>
+              <p>智能语音点餐助手</p>
+            </header>
+            <article class="auth-card auth-simple-card">
+              <div class="auth-grid">
+                <section class="auth-hero" aria-label="登录信息">
+                  <p class="auth-eyebrow">YIDIANDIAN ACCESS</p>
+                  <h2>登录 / 注册</h2>
+                  <p class="muted">手机号验证码一键进入。未注册手机号自动注册，已注册手机号直接登录。</p>
+                </section>
+
+                <section class="auth-form-wrap" aria-label="手机号登录表单">
+                  <div class="auth-simple-form">
+                    <div class="auth-field">
+                      <label for="auth-phone">手机号</label>
+                      <div class="auth-phone-row">
+                        <span class="auth-prefix">+86</span>
+                        <input id="auth-phone" inputmode="numeric" autocomplete="tel" maxlength="11" placeholder="请输入手机号" />
+                      </div>
+                    </div>
+                    <div class="auth-field">
+                      <label for="auth-sms-code">验证码</label>
+                      <div class="auth-code-row">
+                        <input id="auth-sms-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="请输入6位验证码" />
+                        <button id="auth-send-sms-btn" type="button" class="btn-ghost">发送验证码</button>
+                      </div>
+                    </div>
+                    <div class="auth-simple-actions">
+                      <button id="auth-login-sms-btn" type="button" class="auth-submit-btn">登录/注册</button>
+                      <p class="auth-disclaimer">验证码有效期 5 分钟，发送后 60 秒内不可重复发送。</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="auth-hidden-inputs" hidden>
+                  <input id="auth-kls-base-url" value="" placeholder="https://your-kls.example.com" />
+                <input id="auth-device-id" value="android-bbq-ui" />
+                <input id="auth-app-version" type="number" min="0" value="120" />
+                <input id="auth-platform" value="android" />
+                <select id="auth-sms-purpose">
+                  <option value="LOGIN" selected>LOGIN</option>
+                </select>
+                <input id="auth-app-id" placeholder="可选，启用签名时使用" />
+                <input id="auth-sign-secret" type="password" placeholder="可选，启用签名时使用" />
+              </div>
+            </article>
+          </main>
+        </section>
+
+        <section id="view-main" class="view page-view">
+          <main class="workspace-layout">
+            <aside class="table-column" aria-label="Tables">
+              <table class="table-list">
+                <tbody id="board-body">
+                  <tr>
+                    <td>加载中...</td>
+                    <td>loading</td>
+                  </tr>
+                </tbody>
+              </table>
+            </aside>
+
+            <section class="order-column" aria-label="Order Board">
+              <div class="main-order-table-wrap">
+                <table class="order-table">
+                  <thead>
+                    <tr>
+                      <th id="main-col-dish">菜品</th>
+                      <th id="main-col-qty" class="t-center">数量</th>
+                      <th id="main-col-price" class="t-right">价格</th>
+                      <th id="main-col-status" class="t-center">状态</th>
+                    </tr>
+                  </thead>
+                  <tbody id="selected-order-body">
+                    <tr>
+                      <td id="selected-order-empty" colspan="4">请选择左侧桌台查看明细</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p id="selected-table-status" class="order-selected-status hidden"></p>
+              <div class="summary-actions summary-actions-above-total" aria-label="账单操作">
+                <button id="selected-print-btn" type="button" class="summary-action-btn summary-action-print" disabled>打印</button>
+                <button id="selected-checkout-btn" type="button" class="summary-action-btn summary-action-checkout" disabled>买单</button>
+              </div>
+              <div class="summary-box">
+                <div class="summary-total">
+                  <span id="selected-total-label">-- 总计</span>
+                  <strong id="selected-total">¥ 0.00</strong>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <section class="placeholder-zone">
+            <div id="main-placeholder-title" class="placeholder-title">主控页功能区占位框</div>
+            <div class="legacy-grid">
+              <article class="legacy-card">
+                <h3>会话与输入占位框</h3>
+                <div class="legacy-field-grid">
+                  <label for="operator-id">店员 ID</label>
+                  <input id="operator-id" value="waiter-A" />
+                  <label for="table-id">桌号数字</label>
+                  <input id="table-id" type="number" min="1" value="1" />
+                </div>
+                <div class="legacy-actions">
+                  <button id="waiter-start">创建会话</button>
+                  <button id="customer-start">开始输入</button>
+                  <button id="customer-speak">追加分段</button>
+                  <button id="customer-done">结束输入</button>
+                </div>
+                <label for="voice-input">语音文本草稿</label>
+                <textarea id="voice-input" placeholder="语音转写文本"></textarea>
+                <div class="legacy-actions">
+                  <button id="dictation-start">开始听写</button>
+                  <button id="dictation-stop" disabled>停止听写</button>
+                </div>
+                <p id="dictation-status" class="muted">听写空闲</p>
+                <pre id="session-view">暂无会话</pre>
+              </article>
+
+              <article class="legacy-card">
+                <h3>解析与服务动作占位框</h3>
+                <div class="legacy-actions">
+                  <button id="agent-readback">解析菜单</button>
+                  <button id="customer-confirm">确认菜单</button>
+                  <button id="service-add">加菜 x1</button>
+                  <button id="service-preview">预览账单</button>
+                  <button id="service-sync">同步账单载荷</button>
+                </div>
+                <pre id="readback">等待解析结果</pre>
+                <pre id="bill-view">暂无账单预览</pre>
+              </article>
+
+              <article class="legacy-card">
+                <h3 id="main-voice-card-title">语音命令占位框</h3>
+                <button id="single-action-btn" class="single-action-btn">点击开始说话</button>
+                <p id="single-action-status" class="status-chip">状态：IDLE</p>
+                <div class="legacy-actions">
+                  <button id="voice-command-run">执行文本命令</button>
+                  <button id="checkout-open" class="btn-ghost">打开买单弹窗</button>
+                </div>
+                <label for="voice-command-text">命令文本</label>
+                <input id="voice-command-text" placeholder="例如：A2加菜土豆片两份" />
+                <pre id="voice-command-result">暂无语音命令结果</pre>
+                <pre id="voice-debug-view">暂无语音调试数据</pre>
+                <div class="legacy-actions">
+                  <button id="record-start">开始录音</button>
+                  <button id="record-stop" disabled>停止并上传</button>
+                </div>
+                <p id="record-status" class="muted">录音器空闲</p>
+              </article>
+
+              <article class="legacy-card">
+                <h3>运行日志占位框</h3>
+                <ul id="log-list"></ul>
+              </article>
+
+              <article class="legacy-card wide">
+                <h3>KLS 联调占位框</h3>
+                <div class="legacy-field-grid four">
+                  <label for="kls-base-url">KLS 地址</label>
+                    <input id="kls-base-url" value="" placeholder="https://your-kls.example.com" />
+                  <label for="kls-phone">手机号</label>
+                  <input id="kls-phone" placeholder="请输入手机号" />
+                  <label for="kls-device-id">设备ID</label>
+                  <input id="kls-device-id" value="android-bbq-ui" placeholder="android-bbq-ui" />
+                  <label for="kls-app-version">版本号</label>
+                  <input id="kls-app-version" type="number" min="0" value="120" />
+                  <label for="kls-platform">平台</label>
+                  <input id="kls-platform" value="android" placeholder="android" />
+                  <label for="kls-rollout-key">灰度Key</label>
+                  <input id="kls-rollout-key" placeholder="可选" />
+                  <label for="kls-sms-purpose">验证码用途</label>
+                  <select id="kls-sms-purpose">
+                    <option value="REGISTER">REGISTER</option>
+                    <option value="LOGIN">LOGIN</option>
+                  </select>
+                  <label for="kls-sms-code">短信验证码</label>
+                  <input id="kls-sms-code" placeholder="6位验证码" />
+                  <label for="kls-app-id">签名AppId</label>
+                  <input id="kls-app-id" placeholder="可选，启用签名时使用" />
+                  <label for="kls-sign-secret">签名密钥</label>
+                  <input id="kls-sign-secret" type="password" placeholder="可选，启用签名时使用" />
+                </div>
+                <div class="legacy-actions">
+                  <button id="kls-send-sms-btn">发送验证码</button>
+                  <button id="kls-register-sms-btn">短信注册</button>
+                  <button id="kls-login-sms-btn">短信登录</button>
+                  <button id="kls-refresh-token-btn" class="btn-ghost">刷新令牌</button>
+                  <button id="kls-gateway-key-btn" class="btn-ghost">获取网关Key</button>
+                  <button id="kls-update-check-btn" class="btn-ghost">检查更新</button>
+                  <button id="kls-update-ack-btn" class="btn-ghost">上报更新回执</button>
+                  <button id="kls-logout-btn" class="btn-ghost">退出登录</button>
+                </div>
+                <p class="muted">签名字段可留空（后端未开启签名时）；开启签名后请填 AppId 和签名密钥。</p>
+                <pre id="kls-auth-view">KLS 鉴权状态：未登录</pre>
+                <pre id="kls-last-response">暂无 KLS 响应</pre>
+              </article>
+
+            </div>
+            <article class="legacy-card palette-config-card">
+              <h3>选中颜色调色板</h3>
+              <div class="palette-config-grid">
+                <label for="board-selected-color">桌台选中颜色</label>
+                <input id="board-selected-color" type="color" value="#fdf2dd" />
+                <input id="board-selected-color-hex" value="#fdf2dd" maxlength="7" placeholder="#fdf2dd" />
+                <button id="board-selected-color-apply" class="btn-ghost">应用颜色</button>
+                <button id="board-selected-color-reset" class="btn-ghost">恢复默认</button>
+              </div>
+              <p class="muted">绑定主页面左侧桌台选中态颜色（实时生效）</p>
+              <span id="board-selected-preview" class="palette-preview">选中预览</span>
+            </article>
+          </section>
+        </section>
+
+        <section id="view-menu" class="view page-view">
+          <section class="menu-record-shell" aria-label="Menu Board">
+              <header class="menu-record-toolbar">
+                <div class="menu-record-title-group">
+                  <h2 id="menu-db-title">菜品数据库</h2>
+                  <div class="menu-record-category-inline" aria-label="Menu Categories">
+                    <table class="menu-category-strip">
+                      <tbody id="menu-category-body">
+                        <tr>
+                          <td id="menu-category-loading">加载中...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p id="menu-filter-status" class="order-selected-status">当前分类：全部</p>
+                </div>
+              </header>
+              <div class="menu-record-table-wrap">
+                <table class="order-table menu-record-table">
+                  <thead>
+                    <tr>
+                      <th id="menu-col-name">菜名</th>
+                      <th id="menu-col-category">分类</th>
+                      <th id="menu-col-price" class="t-right">价格</th>
+                      <th id="menu-col-unit">单位</th>
+                      <th id="menu-col-alias">别名</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dish-table-body">
+                    <tr>
+                      <td id="dish-table-empty" colspan="5">暂无菜品</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="menu-native-ocr-bar" aria-label="菜单拍照上传">
+                <button id="menu-ocr-native-capture" type="button" class="menu-native-ocr-btn">
+                  <span id="menu-ocr-native-main" class="menu-native-ocr-btn-main">拍照上传菜单</span>
+                  <span id="menu-ocr-native-sub" class="menu-native-ocr-btn-sub">智能识别并预录入</span>
+                </button>
+                <p id="menu-ocr-native-status" class="menu-native-ocr-status">点击拍照后自动识别，并弹出预录入确认</p>
+              </div>
+            </section>
+
+          <section class="placeholder-zone">
+            <div id="menu-placeholder-title" class="placeholder-title">菜品页功能区占位框</div>
+            <div class="legacy-grid">
+              <article class="legacy-card">
+                <h3 id="menu-single-card-title">菜品语音录入占位框</h3>
+                <button id="menu-single-btn" class="single-action-btn">点击开始录入菜品</button>
+                <p id="menu-single-status" class="status-chip">状态：IDLE</p>
+                <pre id="menu-voice-preview">暂无菜品语音文本</pre>
+                <pre id="dish-agent-result">暂无菜品录入结果</pre>
+              </article>
+
+              <article class="legacy-card wide">
+                <h3>菜品调试表单占位框</h3>
+                <div class="legacy-actions">
+                  <button id="dish-dictation-start">开始菜品听写</button>
+                  <button id="dish-dictation-stop" disabled>停止菜品听写</button>
+                  <button id="dish-add">Agent录入菜品</button>
+                </div>
+                <p id="dish-dictation-status" class="muted">菜品听写空闲</p>
+                <textarea id="dish-voice-draft" placeholder="菜品语音草稿文本"></textarea>
+                <div class="legacy-field-grid four">
+                  <label for="dish-name">菜名</label>
+                  <input id="dish-name" placeholder="牛肉串" />
+                  <label for="dish-category">分类</label>
+                  <input id="dish-category" placeholder="烧烤" />
+                  <label for="dish-price">价格（元）</label>
+                  <input id="dish-price" type="number" min="0" step="0.01" placeholder="20" />
+                  <label for="dish-unit">单位</label>
+                  <input id="dish-unit" value="份" placeholder="份" />
+                </div>
+                <label for="dish-aliases">别名（逗号分隔）</label>
+                <input id="dish-aliases" placeholder="牛肉串,烤牛肉串" />
+              </article>
+
+              <article class="legacy-card wide">
+                <h3>菜品拍照识别占位框</h3>
+                <div class="legacy-actions">
+                  <input id="menu-ocr-image" type="file" accept="image/*" capture="environment" hidden />
+                  <button id="menu-ocr-capture">拍照/选图</button>
+                  <button id="menu-ocr-import">识别并预录入</button>
+                </div>
+                <p id="menu-ocr-file-name" class="muted">未选择图片</p>
+                <pre id="menu-ocr-result">暂无拍照识别结果</pre>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-sales" class="view page-view">
+          <section class="order-column sales-main-board" aria-label="Sales Board">
+              <section class="sales-kpi-grid" aria-label="Sales KPI">
+                <article class="metric-panel metric-panel-primary">
+                  <div class="metric-panel-head-inline">
+                    <h3>当日营业额</h3>
+                    <span class="metric-period-chip">今日</span>
+                  </div>
+                  <p id="profit-current">¥ 0.00</p>
+                </article>
+                <article class="metric-panel metric-panel-period">
+                  <div class="metric-panel-head-inline">
+                    <h3>周期营业额</h3>
+                    <div class="metric-period-toggle" aria-label="周月切换">
+                      <button id="profit-period-week" type="button" class="metric-switch-btn is-active">本周</button>
+                      <button id="profit-period-month" type="button" class="metric-switch-btn">本月</button>
+                    </div>
+                  </div>
+                  <p id="profit-period-value">¥ 0.00</p>
+                </article>
+              </section>
+
+              <section class="sales-section trend-section">
+                <header class="sales-section-head trend-head">
+                  <div>
+                    <h3>营收趋势</h3>
+                    <p>按已结订单聚合</p>
+                  </div>
+                  <div class="sales-view-toggle" aria-label="趋势视图切换">
+                    <button id="sales-view-daily" type="button" class="sales-view-btn is-active">每日</button>
+                    <button id="sales-view-weekly" type="button" class="sales-view-btn">每周</button>
+                  </div>
+                </header>
+                <div class="sales-trend-frame">
+                  <div id="sales-trend-yaxis" class="sales-trend-yaxis">
+                    <span>0</span>
+                  </div>
+                  <div id="sales-trend-chart" class="sales-trend-plot">
+                    <div class="sales-trend-empty">NA</div>
+                  </div>
+                </div>
+                <p id="sales-trend-caption" class="sales-trend-caption">当前：每日视图（近7天）</p>
+              </section>
+
+              <section class="sales-section history-section">
+                <header class="sales-section-head">
+                  <h3>历史订单查询</h3>
+                  <p>支持按桌号和时间范围检索，返回完整时间戳与菜品明细</p>
+                </header>
+                <div class="history-toolbar">
+                  <label for="history-filter-date">日期</label>
+                  <input id="history-filter-date" type="date" />
+                  <button id="history-query-btn" class="history-toolbar-btn">查询历史订单</button>
+                  <button id="history-print-selected-btn" class="history-toolbar-btn">打印选中单</button>
+                </div>
+                <table class="order-table history-table">
+                  <thead>
+                    <tr>
+                      <th>订单号</th>
+                      <th>桌号</th>
+                      <th>结单时间</th>
+                      <th>菜品摘要</th>
+                      <th class="t-right">总额</th>
+                    </tr>
+                  </thead>
+                  <tbody id="history-order-body">
+                    <tr>
+                      <td colspan="5">暂无历史订单</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p id="history-selected-status" class="order-selected-status">当前选中订单：--</p>
+                <table class="order-table history-detail-table">
+                  <thead>
+                    <tr>
+                      <th>菜品</th>
+                      <th class="t-center">数量</th>
+                      <th class="t-right">单价</th>
+                      <th class="t-right">小计</th>
+                      <th>下单时间</th>
+                    </tr>
+                  </thead>
+                  <tbody id="history-item-body">
+                    <tr>
+                      <td colspan="5">请先在上方选择历史订单</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </section>
+
+          <section class="placeholder-zone">
+            <div class="placeholder-title">销售页功能区占位框</div>
+            <div class="legacy-grid">
+              <article class="legacy-card wide">
+                <h3>语音审计占位框</h3>
+                <div class="legacy-field-grid">
+                  <label for="audit-filter-table">桌号筛选</label>
+                  <input id="audit-filter-table" placeholder="A12" />
+                  <label for="audit-filter-operator">店员筛选</label>
+                  <input id="audit-filter-operator" placeholder="waiter-A" />
+                </div>
+                <div class="legacy-actions">
+                  <button id="audit-refresh-btn">刷新审计日志</button>
+                </div>
+                <table class="mini-table">
+                  <thead>
+                    <tr>
+                      <th>时间</th>
+                      <th>店员</th>
+                      <th>动作</th>
+                      <th>摘要</th>
+                    </tr>
+                  </thead>
+                  <tbody id="audit-table-body">
+                    <tr>
+                      <td colspan="4">暂无审计日志</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-settings" class="view page-view">
+          <section class="settings-copy-shell" aria-label="Settings Page">
+              <div class="settings-copy-stack">
+                <section class="settings-copy-card">
+                  <header class="settings-copy-card-head">
+                    <h2>循环桌设置</h2>
+                  </header>
+
+                  <div class="settings-copy-card-body">
+                    <div class="settings-copy-row settings-copy-row-switch">
+                      <div class="settings-copy-text">
+                        <h3>启用循环桌</h3>
+                        <p>开启后，桌号将在指定数量内循环使用</p>
+                      </div>
+                      <label class="settings-copy-switch" for="sc-enable-rotation">
+                        <input id="sc-enable-rotation" type="checkbox" />
+                        <span class="settings-copy-switch-ui" aria-hidden="true">
+                          <span class="settings-copy-switch-thumb"></span>
+                        </span>
+                      </label>
+                    </div>
+
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>循环桌数量</h3>
+                        <p>设置循环最大桌数（1-99）</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <input id="sc-table-count" type="number" min="1" max="99" value="10" />
+                      </div>
+                    </div>
+
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>循环桌字母开头</h3>
+                        <p>用于区分循环桌的字母前缀（A-Z）</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <input id="sc-table-prefix" type="text" maxlength="1" value="A" />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-copy-card">
+                  <header class="settings-copy-card-head">
+                    <h2>外卖单设置</h2>
+                  </header>
+
+                  <div class="settings-copy-card-body">
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>外卖单字母开头</h3>
+                        <p>用于区分外卖订单的字母前缀（A-Z）</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <input id="sc-takeout-prefix" type="text" maxlength="1" value="W" />
+                      </div>
+                    </div>
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>重置外卖单号</h3>
+                        <p>当前没有外卖单时，可将下一张外卖单号重置回 1 开始</p>
+                      </div>
+                      <div class="settings-copy-input-wrap settings-copy-input-wrap-wide">
+                        <button id="settings-reset-takeout-btn" type="button" class="settings-takeout-reset-btn">重置</button>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-copy-card">
+                  <header class="settings-copy-card-head">
+                    <h2 id="sc-asr-card-title">ASR 语种设置</h2>
+                  </header>
+
+                  <div class="settings-copy-card-body">
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3 id="sc-asr-language-title">语音识别语言</h3>
+                        <p id="sc-asr-language-desc">用于 KLS -> 讯飞 ASR 的 language/accent 参数</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <select id="sc-asr-language">
+                          <option value="zh_cn:mandarin">中文普通话</option>
+                          <option value="zh_cn:cantonese">中文粤语</option>
+                          <option value="zh_cn:lmz">中文四川话</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3 id="sc-voice-capture-title">说话方式</h3>
+                        <p id="sc-voice-capture-desc">同步主页面和菜品录入页的语音按钮与音量键行为</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <select id="sc-voice-capture-mode">
+                          <option value="toggle">按一次开始，再按一次结束</option>
+                          <option value="hold">按住说话，松开结束</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3 id="sc-display-language-title">App 显示语言</h3>
+                        <p id="sc-display-language-desc">切换界面显示语言（支持维语兼容）</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <select id="sc-app-display-language">
+                          <option value="zh_cn">简体中文</option>
+                          <option value="ug_cn">ئۇيغۇرچە</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="settings-copy-card" id="settings-printer-card">
+                  <header class="settings-copy-card-head">
+                    <h2>小票打印连接</h2>
+                  </header>
+                  <div class="settings-copy-card-body">
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>打印机设备</h3>
+                        <p>选择已配对的蓝牙小票打印机</p>
+                      </div>
+                      <div class="settings-copy-input-wrap settings-copy-input-wrap-wide">
+                        <select id="printer-device-select">
+                          <option value="">请先刷新已配对设备</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3>票据宽度</h3>
+                        <p>根据设备选择 58mm 或 80mm</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <select id="printer-width-mm">
+                          <option value="58" selected>58</option>
+                          <option value="80">80</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="settings-copy-row">
+                      <div class="settings-copy-text">
+                        <h3 id="printer-item-font-size-title">菜单字号</h3>
+                        <p id="printer-item-font-size-desc">仅调整小票菜品项字号，其他内容保持不变</p>
+                      </div>
+                      <div class="settings-copy-input-wrap">
+                        <select id="printer-item-font-size">
+                          <option value="small" selected>小（当前）</option>
+                          <option value="medium">中</option>
+                          <option value="large">大</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="settings-copy-row settings-copy-row-switch">
+                      <div class="settings-copy-text">
+                        <h3 id="printer-auto-checkout-title">结账自动打印</h3>
+                        <p id="printer-auto-checkout-desc">确认结账后自动发送中文账单到已连接打印机</p>
+                      </div>
+                      <label class="settings-copy-switch" for="printer-auto-checkout">
+                        <input id="printer-auto-checkout" type="checkbox" />
+                        <span class="settings-copy-switch-ui" aria-hidden="true">
+                          <span class="settings-copy-switch-thumb"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <div class="settings-copy-actions settings-copy-printer-actions">
+                      <button id="printer-perm-btn" type="button">申请蓝牙权限</button>
+                      <button id="printer-refresh-btn" type="button">刷新配对设备</button>
+                      <button id="printer-connect-btn" type="button">连接选中设备</button>
+                      <button id="printer-disconnect-btn" type="button" class="btn-ghost">断开连接</button>
+                    </div>
+                    <div class="settings-copy-actions settings-copy-printer-actions">
+                      <button id="printer-selftest-btn" type="button">打印自检小票</button>
+                      <button id="printer-sample-btn" type="button" class="btn-ghost">打印样例小票</button>
+                    </div>
+                    <p id="printer-status-view" class="settings-copy-status">打印状态：未初始化</p>
+                  </div>
+                </section>
+
+                <section class="settings-copy-card settings-copy-card-danger">
+                  <header class="settings-copy-card-head">
+                    <h2>危险操作</h2>
+                  </header>
+                  <div class="settings-copy-card-body">
+                    <div class="settings-copy-danger-row">
+                      <button id="settings-clear-menu-btn" type="button" class="settings-danger-btn">
+                        清空菜品数据库
+                      </button>
+                      <button id="settings-clear-tables-btn" type="button" class="settings-danger-btn">
+                        清空当前所有桌
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+            </section>
+        </section>
+
+        <section id="view-profile" class="view page-view">
+          <section class="profile-shell" aria-label="个人页">
+              <div class="profile-stack">
+                <section class="profile-card">
+                  <div class="profile-card-head">
+                    <h3>账号信息</h3>
+                    <span id="profile-role-chip" class="profile-role-chip">未登录</span>
+                  </div>
+                  <div class="profile-card-body">
+                    <div class="profile-user-head">
+                      <div id="profile-avatar" class="profile-avatar" aria-hidden="true">?</div>
+                      <div class="profile-user-copy">
+                        <div id="profile-name-row" class="profile-name-row">
+                          <strong id="profile-user-name">未登录</strong>
+                          <button id="profile-edit-name-btn" type="button" class="profile-edit-name-btn" aria-label="修改店名（昵称）">
+                            <svg class="profile-lucide profile-pencil-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M4 20h4.8L19.3 9.5a2.1 2.1 0 0 0 0-3L17.5 4.7a2.1 2.1 0 0 0-3 0L4 15.2V20Z"></path>
+                              <path d="M13.6 6.1l4.3 4.3"></path>
+                            </svg>
+                          </button>
+                          <div id="profile-name-editor" class="profile-name-editor hidden">
+                            <input id="profile-name-input" type="text" maxlength="32" placeholder="输入店名（昵称，用于首页和打印）" />
+                            <button id="profile-name-save-btn" type="button">保存</button>
+                            <button id="profile-name-cancel-btn" type="button" class="btn-ghost">取消</button>
+                          </div>
+                        </div>
+                        <span id="profile-user-subtitle">登录后可设置店名（昵称）</span>
+                      </div>
+                    </div>
+                    <div class="profile-meta-grid">
+                      <article class="profile-meta-item">
+                        <span class="profile-meta-icon" aria-hidden="true">
+                          <i data-lucide="phone" class="profile-lucide"></i>
+                        </span>
+                        <div>
+                          <p>绑定手机</p>
+                          <strong id="profile-phone">--</strong>
+                        </div>
+                      </article>
+                      <article class="profile-meta-item">
+                        <span class="profile-meta-icon" aria-hidden="true">
+                          <i data-lucide="shield" class="profile-lucide"></i>
+                        </span>
+                        <div>
+                          <p>网关到期</p>
+                          <strong id="profile-gateway-expire">--</strong>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="profile-current-plan" class="profile-card profile-plan-summary">
+                  <div class="profile-card-head">
+                    <h3>当前套餐</h3>
+                  </div>
+                  <div class="profile-card-body">
+                    <div class="profile-plan-summary-row">
+                      <div class="profile-plan-summary-main">
+                        <span class="profile-plan-crown" aria-hidden="true">
+                          <i data-lucide="crown" class="profile-lucide"></i>
+                        </span>
+                        <div>
+                          <strong id="profile-plan-name">基础版</strong>
+                          <p id="profile-plan-detail">有效期 --，续费状态 --</p>
+                        </div>
+                      </div>
+                      <button id="profile-show-plans-btn" type="button">
+                        升级套餐
+                        <i data-lucide="chevron-right" class="profile-lucide"></i>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="profile-plan-picker" class="profile-plan-picker hidden" aria-label="套餐选择">
+                  <div class="profile-plan-picker-head">
+                    <h3>
+                      <i data-lucide="crown" class="profile-lucide"></i>
+                      选择适合您的套餐
+                    </h3>
+                    <button id="profile-hide-plans-btn" type="button" class="btn-ghost">收起</button>
+                  </div>
+                  <div class="profile-plan-grid">
+                    <article class="profile-plan-card is-current">
+                      <span class="profile-plan-badge">当前使用</span>
+                      <h4>基础版</h4>
+                      <p class="profile-plan-desc">适合单店稳定经营，覆盖核心运营能力</p>
+                      <p class="profile-plan-price">¥99<span>/月</span></p>
+                      <ul class="profile-plan-feature-list">
+                        <li>语音点餐与收银</li>
+                        <li>营业与销量报表</li>
+                        <li>最多支持1个设备在线</li>
+                      </ul>
+                      <button type="button" class="profile-plan-cta" disabled>已生效</button>
+                    </article>
+                  </div>
+                </section>
+
+                <button id="profile-logout-btn" type="button" class="profile-logout-btn">
+                  <i data-lucide="log-out" class="profile-lucide"></i>
+                  退出登录
+                </button>
+              </div>
+            </section>
+        </section>
+      </section>
+    </div>
+
+    <div id="checkout-modal" class="modal hidden">
+      <div class="modal-card confirm-modal-card">
+        <div class="confirm-modal-head">
+          <h3>确认买单</h3>
+          <p>请核对账单信息后再操作</p>
+        </div>
+        <label for="checkout-table-no">桌号</label>
+        <input id="checkout-table-no" placeholder="例如：A12" />
+        <div class="legacy-actions">
+          <button id="checkout-confirm-btn">确认买单</button>
+          <button id="checkout-cancel-btn" class="btn-ghost">取消</button>
+        </div>
+        <div id="checkout-preview-view" class="confirm-preview" aria-live="polite">暂无买单预览</div>
+      </div>
+    </div>
+
+    <div id="cancel-modal" class="modal hidden">
+      <div class="modal-card confirm-modal-card">
+        <div class="confirm-modal-head">
+          <h3>确认撤桌</h3>
+          <p>请核对桌台信息后再操作</p>
+        </div>
+        <label for="cancel-table-no">桌号</label>
+        <input id="cancel-table-no" placeholder="例如：A12" />
+        <div class="legacy-actions">
+          <button id="cancel-confirm-btn">确认撤桌</button>
+          <button id="cancel-dismiss-btn" class="btn-ghost">取消</button>
+        </div>
+        <div id="cancel-preview-view" class="confirm-preview" aria-live="polite">暂无撤桌确认信息</div>
+      </div>
+    </div>
+
+    <div id="menu-ocr-preview-modal" class="modal hidden">
+      <div class="modal-card confirm-modal-card">
+        <div class="confirm-modal-head">
+          <h3>预录入菜品确认</h3>
+          <p>请确认识别结果后，再执行批量录入</p>
+        </div>
+        <div id="menu-ocr-preview-summary" class="confirm-preview">暂无识别结果</div>
+        <div id="menu-ocr-preview-list" class="confirm-preview menu-ocr-preview-list">暂无预录入菜品</div>
+        <div class="legacy-actions">
+          <button id="menu-ocr-preview-confirm-btn">确认录入</button>
+          <button id="menu-ocr-preview-cancel-btn" class="btn-ghost">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="action-feedback-overlay" class="action-feedback-overlay" hidden>
+      <div id="action-feedback-box" class="action-feedback-box is-success">操作成功</div>
+    </div>
+    <div id="asr-live-overlay" class="asr-live-overlay" hidden>
+      <div class="asr-live-card">
+        <p id="asr-live-hint" class="asr-live-hint"></p>
+        <div class="asr-live-wave" aria-hidden="true"></div>
+        <p id="asr-live-text" class="asr-live-text">请说话</p>
+      </div>
+    </div>
+
+    <script src="./app.js?v=20260428-43"></script>
+  </body>
+</html>

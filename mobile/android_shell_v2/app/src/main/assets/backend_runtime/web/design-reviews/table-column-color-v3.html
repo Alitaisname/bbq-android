@@ -1,0 +1,147 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>桌台列配色方案 V3 - 规则版</title>
+    <style>
+      :root {
+        --page-bg: linear-gradient(180deg, #f6f7fb 0%, #eceff5 100%);
+        --panel-bg: #ebeef4;
+        --panel-line: #d5dce7;
+        --dish-bg: #ffffff;
+        --cell-line: #d2d9e5;
+        --cell-text: #3f4d62;
+        --selected-line: #475569;
+        --selected-text: #334155;
+        --selected-shadow: rgba(71, 85, 105, 0.24);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Manrope", "Noto Sans SC", sans-serif;
+        background: var(--page-bg);
+        color: #1f2937;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .review-shell { width: min(560px, 94vw); }
+      .review-title {
+        margin: 0 0 10px;
+        font-size: 20px;
+        font-weight: 800;
+        color: #334155;
+      }
+      .review-note {
+        margin: 0 0 14px;
+        font-size: 12px;
+        color: #4b5563;
+      }
+      .review-row {
+        display: flex;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .table-column {
+        width: 108px;
+        min-width: 108px;
+        background: var(--panel-bg);
+        border: 1px solid var(--panel-line);
+        border-radius: 14px;
+        padding: 10px 8px;
+      }
+
+      .table-list {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+      }
+      .table-list tbody tr { cursor: pointer; }
+      .table-list td { padding: 0; }
+      .table-list td:last-child { display: none; }
+
+      .table-list td:first-child {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 4px;
+        border: 1px solid var(--cell-line);
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--cell-text);
+        background: var(--panel-bg);
+        transition: 140ms ease;
+        transition-property: border-color, box-shadow, color, transform;
+      }
+
+      #board-body .is-selected td:first-child {
+        background: var(--dish-bg);
+        border-color: var(--selected-line);
+        color: var(--selected-text);
+        box-shadow: 0 6px 14px var(--selected-shadow);
+        transform: translateY(-1px);
+      }
+
+      .dish-swatch {
+        flex: 1;
+        border: 1px dashed #c6cfdd;
+        border-radius: 14px;
+        background: #f2f4f8;
+        padding: 10px;
+      }
+      .dish-swatch h3 {
+        margin: 0 0 8px;
+        font-size: 13px;
+        color: #3f4d62;
+      }
+      .dish-sample {
+        height: 64px;
+        border-radius: 10px;
+        border: 1px solid #d8deea;
+        background: var(--dish-bg);
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="review-shell">
+      <h1 class="review-title">方案 V3（规则版）</h1>
+      <p class="review-note">未选中 = 左列背景色；选中 = 菜品栏色。点击桌号切换。</p>
+      <div class="review-row">
+        <aside class="table-column" aria-label="Tables">
+          <table class="table-list">
+            <tbody id="board-body">
+              <tr data-table-no="A1" class="is-selected"><td>A1</td><td>待补充菜品</td></tr>
+              <tr data-table-no="A2"><td>A2</td><td>待补充菜品</td></tr>
+              <tr data-table-no="A3"><td>A3</td><td>待补充菜品</td></tr>
+              <tr data-table-no="A4"><td>A4</td><td>待补充菜品</td></tr>
+            </tbody>
+          </table>
+        </aside>
+        <section class="dish-swatch" aria-label="Dish Column Color">
+          <h3>菜品栏颜色对照</h3>
+          <div class="dish-sample">这个色块 = 选中按钮填充色</div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const bodyEl = document.getElementById("board-body");
+      bodyEl.addEventListener("click", (event) => {
+        const row = event.target.closest("tr[data-table-no]");
+        if (!row) return;
+        for (const tr of bodyEl.querySelectorAll("tr")) tr.classList.remove("is-selected");
+        row.classList.add("is-selected");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>桌台列配色方案预览</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+        font-family: "Manrope", "Noto Sans SC", sans-serif;
+        color: #1f2937;
+        padding: 24px;
+      }
+      .card {
+        width: min(560px, 94vw);
+        background: #ffffff;
+        border: 1px solid #dbe4f0;
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        color: #1d4ed8;
+      }
+      p {
+        margin: 0 0 14px;
+        font-size: 13px;
+        color: #475569;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+      a {
+        display: block;
+        padding: 12px 14px;
+        border: 1px solid #d5e2f2;
+        border-radius: 12px;
+        background: #f8fbff;
+        color: #0f172a;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      a:hover {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+        color: #1d4ed8;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>桌台列颜色重设计预览</h1>
+      <p>打开下面任意版本进行审核（每页可点击桌号切换选中态）：</p>
+      <ul>
+        <li><a href="./table-column-color-v1.html">V1 冰川蓝</a></li>
+        <li><a href="./table-column-color-v2.html">V2 青绿</a></li>
+        <li><a href="./table-column-color-v3.html">V3 石墨灰蓝</a></li>
+      </ul>
+    </main>
+  </body>
+</html>
