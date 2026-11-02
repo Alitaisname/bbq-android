@@ -2111,3 +2111,10 @@
 - 文档和开发脚本中的个人手机号、真机编号及原服务器地址改为示例。
 - 补充忽略本地凭据、签名文件、数据库、录音、缓存及临时截图。
 - 公开发布采用仅包含已提交文件的独立初始快照，保留本地开发历史；远端创建和上传状态以实际 GitHub 操作结果为准。
+
+发布结果：
+
+- 公开仓库：https://github.com/Alitaisname/bbq-android ，默认分支 `main`，GitHub 已识别 MIT License。
+- 首页简介和主题已配置；源码、使用文档与第三方许可一并上传。
+- 验证：Phase 1 / Phase 2 静态校验通过，`:app:compileDebugKotlin --offline -PDEV_AUTH_INJECT_ENABLED=false` 通过（KLS 使用示例域名）。
+- 此次未进行真机安装和远端业务服务验证；登录、语音及 OCR 需使用部署者自己的服务配置。
